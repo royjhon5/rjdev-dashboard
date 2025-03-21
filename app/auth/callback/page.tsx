@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
+import CustomLoading from "@/components/custom_loading";
 
 export default function AuthCallback() {
   const router = useRouter();
@@ -11,13 +12,11 @@ export default function AuthCallback() {
     const handleAuth = async () => {
       const { error } = await supabase.auth.getSession();
       if (error) {
-        console.error("Session error:", error);
         router.replace("/login");
         return;
       }
       supabase.auth.onAuthStateChange((event, session) => {
         if (session) {
-          console.log("Session stored:", session);
           router.replace("/dashboard");
         } else {
           router.replace("/login");
@@ -28,5 +27,9 @@ export default function AuthCallback() {
     handleAuth();
   }, [router]);
 
-  return <p>Authenticating...</p>;
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <CustomLoading />
+    </div>
+  );
 }

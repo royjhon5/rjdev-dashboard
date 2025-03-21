@@ -34,8 +34,7 @@ export default function Login() {
     }
   };
 
-  if (loading) return <p>Checking session...</p>; // ⏳ Show loading state
-
+  if (loading) return null; 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-2xl font-bold mb-4">Login</h1>
