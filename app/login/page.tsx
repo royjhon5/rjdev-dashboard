@@ -24,7 +24,7 @@ export default function Login() {
   const signInWithGitHub = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "github",
-      options: { redirectTo: `$https://dashboard.rjdev.space/auth/callback` },
+      options: { redirectTo: `https://dashboard.rjdev.space/auth/callback` },
     });
 
     if (error) {
